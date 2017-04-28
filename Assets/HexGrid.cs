@@ -4,8 +4,8 @@ using UnityEngine;
 public class HexGrid : MonoBehaviour
 {
 
-    public int width = 6;
-    public int height = 6;
+    public int width = 30;
+    public int height = 30;
 
     public HexCell cellPrefab;
 
@@ -14,10 +14,12 @@ public class HexGrid : MonoBehaviour
     public Text cellLabelPrefab;
 
     Canvas gridCanvas;
+    HexMesh hexMesh;
 
     void Awake()
     {
         gridCanvas = GetComponentInChildren<Canvas>();
+        hexMesh = GetComponentInChildren<HexMesh>();
 
         cells = new HexCell[height * width];
 
@@ -28,6 +30,11 @@ public class HexGrid : MonoBehaviour
                 CreateCell(x, z, i++);
             }
         }
+    }
+
+    void Start()
+    {
+        hexMesh.Triangulate(cells);
     }
 
     void CreateCell(int x, int z, int i)
