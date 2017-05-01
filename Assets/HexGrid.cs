@@ -7,6 +7,7 @@ public class HexGrid : MonoBehaviour
     public int width = 30;
     public int height = 30; 
     public HexCell cellPrefab;
+    public Color defaultColor = Color.white;
 
     HexCell[] cells;
 
@@ -47,6 +48,7 @@ public class HexGrid : MonoBehaviour
         cell.transform.SetParent(transform, false);
         cell.transform.localPosition = position;
         cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
+        cell.color = defaultColor;
 
         Text label = Instantiate<Text>(cellLabelPrefab);
         label.rectTransform.SetParent(gridCanvas.transform, false);
@@ -54,4 +56,16 @@ public class HexGrid : MonoBehaviour
             new Vector2(position.x, position.z);
         label.text = cell.coordinates.ToStringOnSeparateLines();
     }
+
+    public void ColorCell(Vector3 position, Color color)
+    {
+        position = transform.InverseTransformPoint(position);
+        HexCoordinates coordinates = HexCoordinates.FromPosition(position);
+        int index = coordinates.X + coordinates.Z * width + coordinates.Z / 2;
+        HexCell cell = cells[index];
+        cell.color = color;
+        hexMesh.Triangulate(cells);
+        Debug.Log("touched at " + coordinates.ToString());
+    }
+
 }
