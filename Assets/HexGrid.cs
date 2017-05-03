@@ -4,8 +4,8 @@ using UnityEngine;
 public class HexGrid : MonoBehaviour
 {
 
-    public int width = 30;
-    public int height = 30; 
+    public int width = 6;
+    public int height = 6; 
     public HexCell cellPrefab;
     public Color defaultColor = Color.white;
 
@@ -86,6 +86,7 @@ public class HexGrid : MonoBehaviour
         position = transform.InverseTransformPoint(position);
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);
         int index = coordinates.X + coordinates.Z * width + coordinates.Z / 2;
+        Debug.Log(index);
         HexCell cell = cells[index];
         cell.color = color;
         hexMesh.Triangulate(cells);

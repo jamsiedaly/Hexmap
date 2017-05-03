@@ -19,4 +19,5 @@ public class HexCell : MonoBehaviour {
         neighbors[(int)direction] = cell;
         cell.neighbors[(int)direction.Opposite()] = this;
     }
+
 }
