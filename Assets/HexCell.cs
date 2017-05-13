@@ -50,4 +50,11 @@ public class HexCell : MonoBehaviour {
         );
     }
 
+    public HexEdgeType GetEdgeType(HexCell otherCell)
+    {
+        return HexMetrics.GetEdgeType(
+            elevation, otherCell.elevation
+        );
+    }
+
 }
