@@ -4,8 +4,10 @@ using UnityEngine;
 public class HexGrid : MonoBehaviour
 {
 
-    public int width = 6;
-    public int height = 6; 
+    public int chunkCountX = 4, chunkCountZ = 3;
+    int cellCountX, cellCountZ;
+
+
     public HexCell cellPrefab;
     public Color defaultColor = Color.white;
 
@@ -21,17 +23,25 @@ public class HexGrid : MonoBehaviour
         gridCanvas = GetComponentInChildren<Canvas>();
         hexMesh = GetComponentInChildren<HexMesh>();
 
-        cells = new HexCell[height * width];
+        cellCountX = chunkCountX * HexMetrics.chunkSizeX;
+        cellCountZ = chunkCountZ * HexMetrics.chunkSizeZ;
 
-        for (int z = 0, i = 0; z < height; z++)
+        CreateCells();
+
+    }
+
+    void CreateCells()
+    { 
+        cells = new HexCell[cellCountZ * cellCountX];
+
+        for (int z = 0, i = 0; z<cellCountZ; z++)
         {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x<cellCountX; x++)
             {
                 CreateCell(x, z, i++);
             }
         }
     }
-
     void Start()
     {
         hexMesh.Triangulate(cells);
@@ -58,18 +68,18 @@ public class HexGrid : MonoBehaviour
         {
             if ((z & 1) == 0)
             {
-                cell.SetNeighbor(HexDirection.SE, cells[i - width]);
+                cell.SetNeighbor(HexDirection.SE, cells[i - cellCountX]);
                 if (x > 0)
                 {
-                    cell.SetNeighbor(HexDirection.SW, cells[i - width - 1]);
+                    cell.SetNeighbor(HexDirection.SW, cells[i - cellCountX - 1]);
                 }
             }
             else
             {
-                cell.SetNeighbor(HexDirection.SW, cells[i - width]);
-                if (x < width - 1)
+                cell.SetNeighbor(HexDirection.SW, cells[i - cellCountX]);
+                if (x < cellCountX - 1)
                 {
-                    cell.SetNeighbor(HexDirection.SE, cells[i - width + 1]);
+                    cell.SetNeighbor(HexDirection.SE, cells[i - cellCountX + 1]);
                 }
             }
         }
@@ -87,7 +97,7 @@ public class HexGrid : MonoBehaviour
     {
         position = transform.InverseTransformPoint(position);
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);
-        int index = coordinates.X + coordinates.Z * width + coordinates.Z / 2;
+        int index = coordinates.X + coordinates.Z * cellCountX + coordinates.Z / 2;
         return cells[index];
     }
 
