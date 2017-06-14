@@ -33,7 +33,7 @@ public class HexCell : MonoBehaviour {
         }
     }
 
-    public Color color
+    public Color Color
     {
         get
         {
@@ -50,13 +50,21 @@ public class HexCell : MonoBehaviour {
         }
     }
 
-    Color color;
+    public Color color;
 
     void Refresh()
     {
         if (chunk)
         {
             chunk.Refresh();
+            for (int i = 0; i < neighbors.Length; i++)
+            {
+                HexCell neighbor = neighbors[i];
+                if (neighbor != null && neighbor.chunk != chunk)
+                {
+                    neighbor.chunk.Refresh();
+                }
+            }
         }
     }
 
