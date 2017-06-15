@@ -6,9 +6,6 @@ public class HexMesh : MonoBehaviour
 {
 
     Mesh hexMesh;
-    List<Vector3> vertices;
-    List<int> triangles;
-    List<Color> colors;
     MeshCollider meshCollider;
 
     static List<Vector3> vertices = new List<Vector3>();
