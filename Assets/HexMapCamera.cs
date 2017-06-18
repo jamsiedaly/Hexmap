@@ -27,7 +27,7 @@ public class HexMapCamera : MonoBehaviour
         zoom = Mathf.Clamp01(zoom + delta);
 
         float distance = Mathf.Lerp(stickMinZoom, stickMaxZoom, zoom);
-        stick.localPosition = new Vector3(0f, 0f, distance);
+        stick.localPosition = new Vector3(0f, distance, 0f);
 
     }
 
