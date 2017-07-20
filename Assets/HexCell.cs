@@ -67,8 +67,8 @@ public class HexCell : MonoBehaviour {
             }
         }
     }
-
-    int elevation = int.MinValue;
+    public int elevation;
+    //int elevation = int.MinValue;
 
     [SerializeField]
     HexCell[] neighbors;

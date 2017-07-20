@@ -28,10 +28,10 @@ public class HexGrid : MonoBehaviour
         CreateCells();
     }
 
+
     void CreateChunks()
     {
         chunks = new HexGridChunk[chunkCountX * chunkCountZ];
-
         for (int z = 0, i = 0; z < chunkCountZ; z++)
         {
             for (int x = 0; x < chunkCountX; x++)
@@ -46,17 +46,20 @@ public class HexGrid : MonoBehaviour
     void CreateCells()
     { 
         cells = new HexCell[cellCountZ * cellCountX];
-
+       
         for (int z = 0, i = 0; z<cellCountZ; z++)
         {
             for (int x = 0; x<cellCountX; x++)
             {
-                CreateCell(x, z, i++);
+                //double nx = x / cellCountX - 0.5, nz = z / cellCountZ - 0.5;
+                int cellHeight = (int) Mathf.Floor(Mathf.PerlinNoise(x, z)*6);
+                Debug.Log(cellHeight);
+                CreateCell(x, z, i++, cellHeight);
             }
         }
     }
 
-    void CreateCell(int x, int z, int i)
+    void CreateCell(int x, int z, int i, int height)
     {
         Vector3 position;
         position.x = (x + z * 0.5f - z / 2) * (HexMetrics.innerRadius * 2f);
@@ -67,6 +70,7 @@ public class HexGrid : MonoBehaviour
         cell.transform.localPosition = position;
         cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
         cell.color = defaultColor;
+        
 
         if (x > 0)
         {
@@ -99,7 +103,7 @@ public class HexGrid : MonoBehaviour
 
         cell.uiRect = label.rectTransform;
 
-        cell.Elevation = 0;
+        cell.Elevation = height;
 
         AddCellToChunk(x, z, cell);
     }
