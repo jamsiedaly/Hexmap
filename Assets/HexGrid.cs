@@ -51,8 +51,9 @@ public class HexGrid : MonoBehaviour
         {
             for (int x = 0; x<cellCountX; x++)
             {
-                //double nx = x / cellCountX - 0.5, nz = z / cellCountZ - 0.5;
-                int cellHeight = (int) Mathf.Floor(Mathf.PerlinNoise(x, z)*6);
+                float xCoordinate = (float)x / (float)cellCountX;
+                float zCoordinate = (float)z / (float)cellCountZ;
+                int cellHeight = (int) Mathf.Floor(Mathf.PerlinNoise(xCoordinate, zCoordinate) *6);
                 Debug.Log(cellHeight);
                 CreateCell(x, z, i++, cellHeight);
             }
