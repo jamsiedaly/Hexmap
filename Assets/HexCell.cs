@@ -67,7 +67,7 @@ public class HexCell : MonoBehaviour {
             }
         }
     }
-    public int elevation;
+    //public int elevation;
     //int elevation = int.MinValue;
 
     [SerializeField]
