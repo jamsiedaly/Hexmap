@@ -51,10 +51,10 @@ public class HexGrid : MonoBehaviour
         {
             for (int x = 0; x<cellCountX; x++)
             {
-                float xCoordinate = ((float)cellCountX / ((float)x +1.0f));
-                float zCoordinate = ((float)cellCountZ / ((float)z +1.0f));
+                float xCoordinate = ( ((float)x +1.0f) / (float)cellCountX) * 10;
+                float zCoordinate = ( ((float)z +1.0f) / (float)cellCountZ) * 10;
                 Debug.Log(xCoordinate + " " + zCoordinate);
-                int cellHeight = (int) Mathf.Floor(Mathf.PerlinNoise(xCoordinate, zCoordinate) *6);
+                int cellHeight = (int) Mathf.Floor(Mathf.PerlinNoise(xCoordinate, zCoordinate) *7);
                 Debug.Log(cellHeight);
                 CreateCell(x, z, i++, cellHeight);
             }

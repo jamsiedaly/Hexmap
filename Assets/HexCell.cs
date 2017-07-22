@@ -16,20 +16,26 @@ public class HexCell : MonoBehaviour {
         }
         set
         {
-            if (elevation == value)
-            {
-                return;
-            }
             elevation = value;
             Vector3 position = transform.localPosition;
             position.y = value * HexMetrics.elevationStep;
             transform.localPosition = position;
-            if (elevation < 2)
+            if (elevation <= 2)
             {
                 Color color = new Color(0.2F, 0.2F, 0.8F, 0.9F);
                 this.Color = color;
             }
-            else if (elevation > 1)
+            else if (elevation >= 6)
+            {
+                Color color = new Color(0.9F, 0.9F, 0.9F, 0.8F);
+                this.Color = color;
+            }
+            else if (elevation >= 5)
+            {
+                Color color = new Color(0.4F, 0.6F, 0.5F, 0.8F);
+                this.Color = color;
+            }
+            else
             {
                 Color color = new Color(0.2F, 0.8F, 0.2F, 1.0F);
                 this.Color = color;
