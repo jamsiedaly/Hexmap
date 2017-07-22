@@ -24,7 +24,16 @@ public class HexCell : MonoBehaviour {
             Vector3 position = transform.localPosition;
             position.y = value * HexMetrics.elevationStep;
             transform.localPosition = position;
-
+            if (elevation < 2)
+            {
+                Color color = new Color(0.2F, 0.2F, 0.8F, 0.9F);
+                this.Color = color;
+            }
+            else if (elevation > 1)
+            {
+                Color color = new Color(0.2F, 0.8F, 0.2F, 1.0F);
+                this.Color = color;
+            }
             Vector3 uiPosition = uiRect.localPosition;
             uiPosition.z = elevation * -HexMetrics.elevationStep;
             uiRect.localPosition = uiPosition;
@@ -67,7 +76,8 @@ public class HexCell : MonoBehaviour {
             }
         }
     }
-    //public int elevation;
+
+    public int elevation;
     //int elevation = int.MinValue;
 
     [SerializeField]
