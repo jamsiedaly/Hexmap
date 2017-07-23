@@ -25,12 +25,12 @@ public class HexCell : MonoBehaviour {
                 Color color = new Color(0.2F, 0.2F, 0.8F, 0.9F);
                 this.Color = color;
             }
-            else if (elevation >= 6)
+            else if (elevation >= 7)
             {
                 Color color = new Color(0.9F, 0.9F, 0.9F, 0.8F);
                 this.Color = color;
             }
-            else if (elevation >= 5)
+            else if (elevation >= 6)
             {
                 Color color = new Color(0.4F, 0.6F, 0.5F, 0.8F);
                 this.Color = color;

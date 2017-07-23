@@ -1,5 +1,6 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class HexGrid : MonoBehaviour
 {
@@ -46,16 +47,16 @@ public class HexGrid : MonoBehaviour
     void CreateCells()
     { 
         cells = new HexCell[cellCountZ * cellCountX];
-       
+        float timseSeed = (float)DateTimeOffset.Now.Millisecond;
+        float chaos = 5.0f;
+        int maxHeight = 8;
         for (int z = 0, i = 0; z<cellCountZ; z++)
         {
             for (int x = 0; x<cellCountX; x++)
             {
-                float xCoordinate = ( ((float)x +1.0f) / (float)cellCountX) * 10;
-                float zCoordinate = ( ((float)z +1.0f) / (float)cellCountZ) * 10;
-                Debug.Log(xCoordinate + " " + zCoordinate);
-                int cellHeight = (int) Mathf.Floor(Mathf.PerlinNoise(xCoordinate, zCoordinate) *7);
-                Debug.Log(cellHeight);
+                float xCoordinate = ( ((float)x + timseSeed) / (float)cellCountX) * chaos;
+                float zCoordinate = ( ((float)z + timseSeed) / (float)cellCountZ) * chaos;
+                int cellHeight = (int) Mathf.Floor(Mathf.PerlinNoise(xCoordinate, zCoordinate) * maxHeight);
                 CreateCell(x, z, i++, cellHeight);
             }
         }
