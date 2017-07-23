@@ -7,7 +7,7 @@ public class HexGrid : MonoBehaviour
 
     public int chunkCountX = 4, chunkCountZ = 3;
     int cellCountX, cellCountZ;
-
+    float chaos = 8.0f;
 
     public HexCell cellPrefab;
     public Color defaultColor = Color.white;
@@ -45,19 +45,16 @@ public class HexGrid : MonoBehaviour
 
 
     void CreateCells()
-    { 
+    {
+        int mountainHeight = 8;
         cells = new HexCell[cellCountZ * cellCountX];
-        float timseSeed = (float)DateTimeOffset.Now.Millisecond;
-        float chaos = 5.0f;
-        int maxHeight = 8;
+        WorldGenerator myGenerator = new WorldGenerator(cellCountX, cellCountZ, chaos, mountainHeight);
+        int[,] heightMap = myGenerator.basicHeightMap();
         for (int z = 0, i = 0; z<cellCountZ; z++)
         {
             for (int x = 0; x<cellCountX; x++)
             {
-                float xCoordinate = ( ((float)x + timseSeed) / (float)cellCountX) * chaos;
-                float zCoordinate = ( ((float)z + timseSeed) / (float)cellCountZ) * chaos;
-                int cellHeight = (int) Mathf.Floor(Mathf.PerlinNoise(xCoordinate, zCoordinate) * maxHeight);
-                CreateCell(x, z, i++, cellHeight);
+                CreateCell(x, z, i++, heightMap[x,z]);
             }
         }
     }
