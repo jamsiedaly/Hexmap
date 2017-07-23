@@ -40,9 +40,9 @@ public class HexCell : MonoBehaviour {
                 Color color = new Color(0.2F, 0.8F, 0.2F, 1.0F);
                 this.Color = color;
             }
-            Vector3 uiPosition = uiRect.localPosition;
-            uiPosition.z = elevation * -HexMetrics.elevationStep;
-            uiRect.localPosition = uiPosition;
+            //Vector3 uiPosition = uiRect.localPosition;
+            //uiPosition.z = elevation * -HexMetrics.elevationStep;
+            //uiRect.localPosition = uiPosition;
 
             Refresh();
         }
