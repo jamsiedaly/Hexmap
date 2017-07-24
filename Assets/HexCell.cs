@@ -42,7 +42,7 @@ public class HexCell : MonoBehaviour {
             }
             //Vector3 uiPosition = uiRect.localPosition;
             //uiPosition.z = elevation * -HexMetrics.elevationStep;
-            //uiRect.localPosition = uiPosition;
+            //GenuiRect.localPosition = uiPosition;
 
             Refresh();
         }

@@ -49,7 +49,7 @@ public class HexGrid : MonoBehaviour
         int mountainHeight = 8;
         cells = new HexCell[cellCountZ * cellCountX];
         WorldGenerator myGenerator = new WorldGenerator(cellCountX, cellCountZ, chaos, mountainHeight);
-        int[,] heightMap = myGenerator.basicHeightMap();
+        int[,] heightMap = myGenerator.twoContinents();
         for (int z = 0, i = 0; z<cellCountZ; z++)
         {
             for (int x = 0; x<cellCountX; x++)
