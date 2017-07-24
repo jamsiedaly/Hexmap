@@ -47,6 +47,7 @@ public class WorldGenerator
 
     public int[,] twoContinents()
     {
+      
         int padding = worldWidth / 10;
         for(int z = padding; z < (worldHeight/2) + padding; z++)
         {
@@ -62,6 +63,56 @@ public class WorldGenerator
                 heightMap[x, z] = 3;
             }
         }
+
+        chaos /= 2;
+        for (int z = 0; z < worldHeight; z++)
+        {
+            for (int x = 0; x < worldWidth; x++)
+            {
+                float xCoordinate = (((float)x + seed) / (float)worldWidth) * chaos;
+                float zCoordinate = (((float)z + seed) / (float)worldHeight) * chaos;
+                int offset = -1;
+                offset += (int) Mathf.Floor(Mathf.PerlinNoise(xCoordinate, zCoordinate)*(maxHeight/2));
+                heightMap[x, z] += offset;
+            }
+        }
+
+        chaos *= 2;
+        for (int z = 0; z < worldHeight; z++)
+        {
+            for (int x = 0; x < worldWidth; x++)
+            {
+                float xCoordinate = (((float)x + seed) / (float)worldWidth) * chaos;
+                float zCoordinate = (((float)z + seed) / (float)worldHeight) * chaos;
+                int offset = -2;
+                offset += (int)Mathf.Floor(Mathf.PerlinNoise(xCoordinate, zCoordinate) * (maxHeight/2));
+                heightMap[x, z] += offset;
+            }
+        }
+
+        chaos *= 2;
+        for (int z = 0; z < worldHeight; z++)
+        {
+            for (int x = 0; x < worldWidth; x++)
+            {
+                float xCoordinate = (((float)x + seed) / (float)worldWidth) * chaos;
+                float zCoordinate = (((float)z + seed) / (float)worldHeight) * chaos;
+                int offset = 0;
+                offset += (int)Mathf.Floor(Mathf.PerlinNoise(xCoordinate, zCoordinate) * (maxHeight / 2));
+                if (heightMap[x, z] >= 3)
+                {
+                    heightMap[x, z] += offset;
+                }
+                else
+                {
+                    heightMap[x, z] += offset/2;
+                }
+            }
+        }
+
+
+
+
         return heightMap;
     }
 
