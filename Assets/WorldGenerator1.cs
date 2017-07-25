@@ -120,6 +120,16 @@ public class WorldGenerator
                 }
             }
         }
+        for (int z = 0; z < worldHeight; z++)
+        {
+            for (int x = 0; x < worldWidth; x++)
+            {
+                if (heightMap[x, z] < 2)
+                {
+                    heightMap[x, z] = 2;
+                }
+            }
+        }
 
         System.Random rnd = new System.Random();
         int numberOfRotations= rnd.Next(0, 4);
