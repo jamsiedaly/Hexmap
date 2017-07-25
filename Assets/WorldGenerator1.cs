@@ -109,11 +109,24 @@ public class WorldGenerator
                 }
             }
         }
-
+        rotateMap();
 
 
 
         return heightMap;
+    }
+
+    public void rotateMap()
+    {
+        int[,] ret = new int[worldWidth, worldHeight];
+        for (int z = 0; z < worldHeight; z++)
+        {
+            for (int x = 0; x < worldWidth; x++)
+            {
+                ret[x, z] = heightMap[(worldHeight - z) - 1, x];
+            }
+        }
+        heightMap = ret;
     }
 
     public int[,] pangea()
