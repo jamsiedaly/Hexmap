@@ -109,10 +109,24 @@ public class WorldGenerator
                 }
             }
         }
-        rotateMap();
 
+        for (int z = 0; z < worldHeight; z++)
+        {
+            for (int x = 0; x < worldWidth; x++)
+            {
+                if (z < padding || z > worldHeight - padding || x < padding || x > worldWidth - padding && heightMap[x, z] > 2)
+                {
+                    heightMap[x, z] -= 1;
+                }
+            }
+        }
 
-
+        System.Random rnd = new System.Random();
+        int numberOfRotations= rnd.Next(0, 4);
+        for(int i = 0; i < numberOfRotations; i++)
+        {
+            rotateMap();
+        }
         return heightMap;
     }
 
