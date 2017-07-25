@@ -110,17 +110,6 @@ public class WorldGenerator
             }
         }
 
-        //padding /= 2;
-        for (int z = 0; z < worldHeight; z++)
-        {
-            for (int x = 0; x < worldWidth; x++)
-            {
-                if( z <padding || z >worldHeight - padding || x < padding || x > worldWidth - padding && heightMap[x, z] > 2)
-                {
-                    heightMap[x, z] -= 1;
-                }
-            }
-        }
 
 
 
