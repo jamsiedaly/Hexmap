@@ -8,6 +8,8 @@ public class HexCell : MonoBehaviour {
 
     public HexGridChunk chunk;
 
+    private int height;
+
     public int Elevation
     {
         get
@@ -19,6 +21,7 @@ public class HexCell : MonoBehaviour {
             elevation = value;
             Vector3 position = transform.localPosition;
             position.y = value * HexMetrics.elevationStep;
+            height = elevation;
             transform.localPosition = position;
             if (elevation <= 2)
             {
@@ -56,7 +59,7 @@ public class HexCell : MonoBehaviour {
         }
         set
         {
-            if (color == value)
+            if (color == value )
             {
                 return;
             }
