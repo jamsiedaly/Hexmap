@@ -70,33 +70,6 @@ public class HexCell : MonoBehaviour {
 
     public Color color;
 
-    public int WaterLevel
-    {
-        get
-        {
-            return waterLevel;
-        }
-        set
-        {
-            if (waterLevel == value)
-            {
-                return;
-            }
-            waterLevel = value;
-            Refresh();
-        }
-    }
-
-    int waterLevel;
-
-    public bool IsUnderwater
-    {
-        get
-        {
-            return waterLevel > elevation;
-        }
-    }
-
     void Refresh()
     {
         if (chunk)
