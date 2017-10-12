@@ -1,4 +1,4 @@
-﻿using UnityEngine.UI;
+using UnityEngine.UI;
 using UnityEngine;
 using System;
 
@@ -25,10 +25,23 @@ public class HexGrid : MonoBehaviour
         cellCountX = chunkCountX * HexMetrics.chunkSizeX;
         cellCountZ = chunkCountZ * HexMetrics.chunkSizeZ;
 
+        GenerateGrid();
+    }
+
+    public void GenerateGrid()
+    {
         CreateChunks();
         CreateCells();
     }
 
+    public void RegenerateGrid()
+    {
+        foreach(HexGridChunk chunk in chunks)
+        {
+            Destroy(chunk.gameObject);
+        }
+        GenerateGrid();
+    }
 
     void CreateChunks()
     {
