@@ -89,4 +89,17 @@ public static class HexMetrics
         }
         return HexEdgeType.Cliff;
     }
+
+    public const float waterElevationOffset = -0.5f;
+
+    public float WaterSurfaceY
+    {
+        get
+        {
+            return
+                (waterLevel + HexMetrics.waterElevationOffset) *
+                HexMetrics.elevationStep;
+        }
+    }
+
 }
