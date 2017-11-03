@@ -92,12 +92,12 @@ public static class HexMetrics
 
     public const float waterElevationOffset = -0.5f;
 
-    public float WaterSurfaceY
+    public static float WaterSurfaceY
     {
         get
         {
             return
-                (waterLevel + HexMetrics.waterElevationOffset) *
+                (HexMetrics.waterElevationOffset) *
                 HexMetrics.elevationStep;
         }
     }

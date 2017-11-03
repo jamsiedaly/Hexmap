@@ -21,6 +21,8 @@ public class WorldGenerator
         this.seed = (float)DateTimeOffset.Now.Millisecond;
         this.heightMap = new int[worldWidth, worldHeight];
         this.maxHeight = mountainHeight;
+
+        //First create a blank world of all ocean
         for(int i = 0; i < worldHeight; i++)
         {
             for(int j = 0; j < worldWidth; j++)
@@ -32,6 +34,7 @@ public class WorldGenerator
 
     public int[,] basicHeightMap()
     {
+        //Creates a world map with basic island blobs
         for (int z = 0; z < worldHeight; z++)
         {
             for (int x = 0; x <  worldWidth; x++)
@@ -48,6 +51,7 @@ public class WorldGenerator
     public int[,] twoContinents()
     {
       
+        // Create two flat continents that are perfect rectangles
         int padding = worldWidth / 10;
         for(int z = padding; z < (worldHeight/2) + padding; z++)
         {
@@ -64,6 +68,7 @@ public class WorldGenerator
             }
         }
 
+        //Add the first layer of noise giving the continents shape
         chaos /= 2;
         for (int z = 0; z < worldHeight; z++)
         {
@@ -77,6 +82,7 @@ public class WorldGenerator
             }
         }
 
+        //Apply a second layer of noise for hills and peninsulas 
         chaos *= 2;
         for (int z = 0; z < worldHeight; z++)
         {
@@ -90,6 +96,7 @@ public class WorldGenerator
             }
         }
 
+        //Apply a third layer for mountains and extra jagged coatlines
         chaos *= 2;
         for (int z = 0; z < worldHeight; z++)
         {
@@ -110,6 +117,7 @@ public class WorldGenerator
             }
         }
 
+        //Trim the map to add a buffer of water around the outside of the map
         for (int z = 0; z < worldHeight; z++)
         {
             for (int x = 0; x < worldWidth; x++)
@@ -131,6 +139,7 @@ public class WorldGenerator
             }
         }
 
+        //Rotate the map a random number of times to change where the continents are
         System.Random rnd = new System.Random();
         int numberOfRotations= rnd.Next(0, 4);
         for(int i = 0; i < numberOfRotations; i++)

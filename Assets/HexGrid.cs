@@ -25,10 +25,23 @@ public class HexGrid : MonoBehaviour
         cellCountX = chunkCountX * HexMetrics.chunkSizeX;
         cellCountZ = chunkCountZ * HexMetrics.chunkSizeZ;
 
+        GenerateGrid();
+    }
+
+    public void GenerateGrid()
+    {
         CreateChunks();
         CreateCells();
     }
 
+    public void RegenerateGrid()
+    {
+        foreach (HexGridChunk chunk in chunks)
+        {
+            Destroy(chunk.gameObject);
+        }
+        GenerateGrid();
+    }
 
     void CreateChunks()
     {
@@ -50,11 +63,11 @@ public class HexGrid : MonoBehaviour
         cells = new HexCell[cellCountZ * cellCountX];
         WorldGenerator myGenerator = new WorldGenerator(cellCountX, cellCountZ, chaos, mountainHeight);
         int[,] heightMap = myGenerator.twoContinents();
-        for (int z = 0, i = 0; z<cellCountZ; z++)
+        for (int z = 0, i = 0; z < cellCountZ; z++)
         {
-            for (int x = 0; x<cellCountX; x++)
+            for (int x = 0; x < cellCountX; x++)
             {
-                CreateCell(x, z, i++, heightMap[x,z]);
+                CreateCell(x, z, i++, heightMap[x, z]);
             }
         }
     }
@@ -70,7 +83,7 @@ public class HexGrid : MonoBehaviour
         cell.transform.localPosition = position;
         cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
         //cell.color = defaultColor;
-        
+
 
         if (x > 0)
         {
