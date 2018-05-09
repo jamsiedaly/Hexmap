@@ -24,11 +24,16 @@ public class CameraScript : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(new Vector3(0, 0, -speed * Time.deltaTime));
+            transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
+            transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
+        }
+        float zoomDelta = Input.GetAxis("Mouse ScrollWheel");
+        if (zoomDelta != 0f)
+        {
+            transform.Translate(new Vector3(0, 0, -speed * Time.deltaTime));
         }
     }
 }
