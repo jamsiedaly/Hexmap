@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    private float speed = 100;
+    public float speed ;
     // Use this for initialization
     void Start()
     {
@@ -16,24 +16,24 @@ public class CameraScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0), Space.World);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+            transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0), Space.World);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
+            transform.Translate(new Vector3(0, 0, -speed * Time.deltaTime), Space.World);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
+            transform.Translate(new Vector3(0, 0, speed * Time.deltaTime), Space.World);
         }
         float zoomDelta = Input.GetAxis("Mouse ScrollWheel");
         if (zoomDelta != 0f)
         {
-            transform.Translate(new Vector3(0, 0, -speed * Time.deltaTime));
+            transform.Translate(new Vector3(0, -speed * Time.deltaTime * zoomDelta * 20, 0), Space.World);
         }
     }
 }
