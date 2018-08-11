@@ -38,7 +38,7 @@ public class HexCell : MonoBehaviour {
             }
             else if (elevation >= 6)
             {
-                Color color = new Color(0.4F, 0.6F, 0.5F, 0.8F);
+                Color color = new Color(0.2F, 0.6F, 0.3F, 0.8F);
                 this.Color = color;
             }
             else

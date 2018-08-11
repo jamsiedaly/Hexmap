@@ -67,9 +67,10 @@ public class HexMapEditor : MonoBehaviour
 
     void EditCell(HexCell cell)
     {
+        if (cell == null) return;
+
         if (cell.Elevation > 2 && cell.Elevation < 6) 
             cell.Color = activeColor;
-        //cell.Elevation = activeElevation;
         if (riverMode == OptionalToggle.No)
         {
             cell.RemoveRiver();
