@@ -8,6 +8,12 @@ public class HexCell : MonoBehaviour {
 
     public HexGridChunk chunk;
 
+    public Color sea;
+    public Color lowLand;
+    public Color mediumLand;
+    public Color highLand;
+    public Color mountain;
+
     bool hasIncomingRiver, hasOutgoingRiver;
     HexDirection incomingRiver, outgoingRiver;
 
@@ -28,22 +34,22 @@ public class HexCell : MonoBehaviour {
             transform.localPosition = position;
             if (elevation <= 2)
             {
-                Color color = new Color(0.2F, 0.2F, 0.8F, 0.9F);
+                Color color = sea;
                 this.Color = color;
             }
             else if (elevation >= 7)
             {
-                Color color = new Color(0.9F, 0.9F, 0.9F, 0.8F);
+                Color color = mountain;
                 this.Color = color;
             }
             else if (elevation >= 6)
             {
-                Color color = new Color(0.2F, 0.6F, 0.3F, 0.8F);
+                Color color = highLand;
                 this.Color = color;
             }
             else
             {
-                Color color = new Color(0.2F, 0.8F, 0.2F, 1.0F);
+                Color color = mediumLand;
                 this.Color = color;
             }
             //Vector3 uiPosition = uiRect.localPosition;
